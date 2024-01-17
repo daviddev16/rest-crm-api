@@ -40,7 +40,7 @@ public abstract class Pessoa {
             name = "idpessoa",
             nullable = false
     )
-    private Long idPessoa;
+    private Long id;
 
 
     @Column(
@@ -48,14 +48,14 @@ public abstract class Pessoa {
             nullable = false,
             length = 40
     )
-    private String nmPessoa;
+    private String nome;
 
 
     @Column(
             name = "dsendereco",
             nullable = false
     )
-    private String dsEndereco;
+    private String endereco;
 
 
     @Column(
@@ -69,7 +69,13 @@ public abstract class Pessoa {
             name = "dsbairro",
             nullable = false
     )
-    private String dsBairro;
+    private String bairro;
+
+    @Column(
+            name = "dscidade",
+            nullable = false
+    )
+    private String cidade;
 
     @Enumerated(EnumType.STRING)
     @Column(
@@ -78,6 +84,6 @@ public abstract class Pessoa {
             insertable = false,
             updatable = false
     )
-    private TipoPessoa tpPessoa;
+    private TipoPessoa tipoPessoa;
 
 }

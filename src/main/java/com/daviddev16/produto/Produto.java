@@ -30,21 +30,21 @@ public class Produto {
             name = "idproduto",
             nullable = false
     )
-    private Long idProduto;
+    private Long id;
 
 
     @Column(
             name = "nmproduto",
             nullable = false
     )
-    private String nmProduto;
+    private String nome;
 
 
     @Column(
             name = "dsproduto",
             nullable = false
     )
-    private String dsProduto;
+    private String descricao;
 
 
     /* DEFINIÇÃO DE PREÇO TERÁ OUTRO FLUXO */

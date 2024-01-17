@@ -37,7 +37,7 @@ public class Usuario {
             nullable = false,
             updatable = false
     )
-    private Long idUsuario;
+    private Long id;
 
 
     @Column(
@@ -75,7 +75,7 @@ public class Usuario {
             name = "stusuario",
             nullable = false
     )
-    private StatusUsuario statusUsuario;
+    private StatusUsuario status;
 
 
     @Column(

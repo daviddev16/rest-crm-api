@@ -12,30 +12,39 @@ import lombok.*;
 @Entity
 @Table(
         name = "tpatendimento",
-        schema = "crm"
+        schema = "crm",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "uq_tpatendimento_nmtipopatendimento", columnNames = "nmtipopatendimento")}
 )
 public class TipoAtendimento {
 
     @Id
     @SequenceGenerator(
-            name = "tpAtendimento_idtpatendimento_seq",
-            sequenceName = "tpAtendimento_idtpatendimento_seq",
+            name = "tipoatendimento_idtipoatendimento_seq",
+            sequenceName = "tipoatendimento_idtipoatendimento_seq",
             allocationSize = 1
     )
     @GeneratedValue(
-            generator = "tpAtendimento_idtpatendimento_seq",
+            generator = "tipoatendimento_idtipoatendimento_seq",
             strategy = GenerationType.SEQUENCE
     )
     @Column(
-            name = "idtpatendimento",
+            name = "idtipoatendimento",
             nullable = false,
             updatable = false
     )
-    private Long idTpAtendimento;
+    private Long id;
 
     @Column(
-            name = "sgtpatendimento"
+            name = "nmtipopatendimento",
+            nullable = false
     )
-    private String siglaTpAtendimento;
+    private String nome;
+
+    @Column(
+            name = "dstipoatendimento",
+            nullable = false
+    )
+    private String descricao;
 
 }

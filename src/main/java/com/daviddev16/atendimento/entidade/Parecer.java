@@ -34,21 +34,21 @@ public class Parecer {
             nullable = false,
             updatable = false
     )
-    private Long idParecer;
+    private Long id;
 
 
     @Column(
             name = "nmpessoacontato",
             nullable = false
     )
-    private String nmPessoaContato;
+    private String nomePessoaContato;
 
 
     @Column(
             name = "dsparecer",
             nullable = false
     )
-    private String dsParecer;
+    private String descricao;
 
 
     @Column(
@@ -63,7 +63,7 @@ public class Parecer {
             name = "idusuario",
             foreignKey =
                     @ForeignKey(name = "fk_parecer_idusuario",
-                                value = ConstraintMode.CONSTRAINT)
+                                value = ConstraintMode.NO_CONSTRAINT)
     )
     @ManyToOne(
             fetch = FetchType.LAZY,

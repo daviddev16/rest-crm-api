@@ -44,7 +44,7 @@ public class Atendimento {
             nullable = false,
             updatable = false
     )
-    private Long idAtendimento;
+    private Long id;
 
 
     @Column(
@@ -68,11 +68,15 @@ public class Atendimento {
     private Usuario usuario;
 
 
-    @OneToMany(mappedBy = "atendimento")
+    @OneToMany(
+            mappedBy = "atendimento",
+            cascade = CascadeType.REMOVE,
+            orphanRemoval = true
+    )
     private Set<Parecer> parecers;
 
     @JoinColumn(
-            name = "idProduto",
+            name = "idproduto",
             foreignKey =
                 @ForeignKey(name = "fk_atendimento_idproduto",
                             value = ConstraintMode.NO_CONSTRAINT)
