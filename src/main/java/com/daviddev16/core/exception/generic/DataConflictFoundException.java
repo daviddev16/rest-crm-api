@@ -8,4 +8,8 @@ public class DataConflictFoundException extends RuntimeServiceException {
         super(message);
     }
 
+    public static void throwUnexpectedException() {
+        throw new DataConflictFoundException("Erro inesperado.");
+    }
+
 }

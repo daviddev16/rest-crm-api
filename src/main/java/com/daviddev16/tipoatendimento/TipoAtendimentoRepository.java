@@ -1,6 +1,6 @@
-package com.daviddev16.atendimento.repository;
+package com.daviddev16.tipoatendimento;
 
-import com.daviddev16.atendimento.entidade.TipoAtendimento;
+import com.daviddev16.tipoatendimento.TipoAtendimento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

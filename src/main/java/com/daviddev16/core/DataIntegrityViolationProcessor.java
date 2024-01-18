@@ -1,5 +1,6 @@
 package com.daviddev16.core;
 
+import com.daviddev16.handler.DataIntegrityViolationExceptionHandler;
 import org.springframework.dao.DataIntegrityViolationException;
 
 /**

@@ -1,4 +1,4 @@
-package com.daviddev16.atendimento.dto;
+package com.daviddev16.comum;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Min;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestParametrosPaginacao {
+public class QueryParamPaginacaoSimples {
 
     @NotNull(message = "O número da página deve ser informado.")
     @Min(value = 0, message = "O número de páginas deve ser de no mínimo 0.")

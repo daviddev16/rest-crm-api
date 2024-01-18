@@ -1,14 +1,10 @@
-package com.daviddev16.atendimento.controller;
+package com.daviddev16.tipoatendimento;
 
-import com.daviddev16.atendimento.dto.RequestParametrosPaginacao;
-import com.daviddev16.atendimento.entidade.TipoAtendimento;
-import com.daviddev16.atendimento.service.TipoAtendimentoService;
+import com.daviddev16.comum.QueryParamPaginacaoSimples;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/api/tipoAtendimento")
@@ -23,9 +19,9 @@ public class TipoAtendimentoController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<TipoAtendimento> obterTodosTipoAtendimentoPaginado( @Valid RequestParametrosPaginacao parametrosPaginacao )
+    public Page<TipoAtendimento> obterTodosTipoAtendimentoPaginado( @Valid QueryParamPaginacaoSimples paginacaoSimples )
     {
-        return tipoAtendimentoService.obterTodosTipoAtendimentoPaginado(parametrosPaginacao);
+        return tipoAtendimentoService.obterTodosTipoAtendimentoPaginado(paginacaoSimples);
     }
 
     @GetMapping(value = "/{tipoAtendimentoId}")

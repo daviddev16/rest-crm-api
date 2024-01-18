@@ -1,6 +1,6 @@
 package com.daviddev16.usuario;
 
-import com.daviddev16.atendimento.entidade.Atendimento;
+import com.daviddev16.atendimento.Atendimento;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,7 +37,7 @@ public class Usuario {
             nullable = false,
             updatable = false
     )
-    private Long id;
+    private Integer id;
 
 
     @Column(

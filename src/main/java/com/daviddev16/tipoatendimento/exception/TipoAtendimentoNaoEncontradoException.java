@@ -1,4 +1,4 @@
-package com.daviddev16.atendimento.exception;
+package com.daviddev16.tipoatendimento.exception;
 
 import com.daviddev16.core.exception.generic.NotFoundException;
 

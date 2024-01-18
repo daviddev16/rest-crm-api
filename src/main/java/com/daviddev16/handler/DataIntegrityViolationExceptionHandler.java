@@ -1,5 +1,6 @@
-package com.daviddev16.core;
+package com.daviddev16.handler;
 
+import com.daviddev16.core.DataIntegrityViolationProcessor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.daviddev16.atendimento.entidade;
+package com.daviddev16.tipoatendimento;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,10 +11,10 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "tpatendimento",
+        name = "tipoatendimento",
         schema = "crm",
         uniqueConstraints = {
-                @UniqueConstraint(name = "uq_tpatendimento_nmtipopatendimento", columnNames = "nmtipopatendimento")}
+                @UniqueConstraint(name = "uq_tipoatendimento_nmtipopatendimento", columnNames = "nmtipopatendimento")}
 )
 public class TipoAtendimento {
 

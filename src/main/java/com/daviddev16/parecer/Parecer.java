@@ -1,8 +1,11 @@
-package com.daviddev16.atendimento.entidade;
+package com.daviddev16.parecer;
 
+import com.daviddev16.atendimento.Atendimento;
 import com.daviddev16.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -58,6 +61,15 @@ public class Parecer {
             updatable = false
     )
     private String conteudo;
+
+
+    @Column(
+            name = "dtcricao",
+            nullable = false,
+            updatable = false
+    )
+    private LocalDateTime dataCriacao;
+
 
     @JoinColumn(
             name = "idusuario",

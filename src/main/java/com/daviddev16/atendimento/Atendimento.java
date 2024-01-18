@@ -1,15 +1,20 @@
-package com.daviddev16.atendimento.entidade;
+package com.daviddev16.atendimento;
 
-import com.daviddev16.atendimento.enums.Prioridade;
-import com.daviddev16.atendimento.enums.StatusAtendimento;
+import com.daviddev16.atendimento.state.StatusPrioridade;
+import com.daviddev16.atendimento.state.StatusAtendimento;
+import com.daviddev16.empresa.Empresa;
+import com.daviddev16.parecer.Parecer;
 import com.daviddev16.pessoa.cliente.Cliente;
 import com.daviddev16.produto.Produto;
+import com.daviddev16.tipoatendimento.TipoAtendimento;
 import com.daviddev16.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Getter
@@ -30,21 +35,18 @@ import java.util.Set;
 public class Atendimento {
 
     @Id
-    @SequenceGenerator(
-            name = "atendimento_idatendimento_seq",
-            sequenceName = "atendimento_idatendimento_seq",
-            allocationSize = 1
+    @UuidGenerator(
+            style = UuidGenerator.Style.TIME
     )
     @GeneratedValue(
-            generator = "atendimento_idatendimento_seq",
-            strategy = GenerationType.SEQUENCE
+            strategy = GenerationType.UUID
     )
     @Column(
             name = "idatendimento",
             nullable = false,
             updatable = false
     )
-    private Long id;
+    private UUID id;
 
 
     @Column(
@@ -121,6 +123,13 @@ public class Atendimento {
     private LocalDateTime dataCriacao;
 
 
+    @Column(
+            name = "dtencerramento",
+            nullable = false
+    )
+    private LocalDateTime dataEncerramento;
+
+
     @Enumerated(EnumType.STRING)
     @Column(
             name = "statendimento",
@@ -134,7 +143,15 @@ public class Atendimento {
             name = "stprioridade",
             nullable = false
     )
-    private Prioridade statusPrioridade;
+    private StatusPrioridade statusPrioridade;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "idempresa",
+            foreignKey = @ForeignKey(name = "fk_empresa_idempresa",
+                                     value = ConstraintMode.CONSTRAINT)
+    )
+    private Empresa empresa;
 
 
 }
