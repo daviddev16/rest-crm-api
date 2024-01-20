@@ -1,8 +1,10 @@
 package com.daviddev16.usuario;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.List;
 
-public interface UsuarioService {
+public interface UsuarioService extends UserDetailsService {
 
     List<Usuario> obterTodosUsuarios();
 

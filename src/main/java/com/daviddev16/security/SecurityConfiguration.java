@@ -1,7 +1,8 @@
-package com.daviddev16.config;
+package com.daviddev16.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -14,17 +15,22 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    /**
-     * APENAS PARA DESENVOLVIMENTO DOS CONTROLLERS
-     * */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(customizer ->
                 {
-                    customizer.anyRequest().permitAll();
+                    customizer
+                            .requestMatchers("/v1/api/publico")
+                            .permitAll();
+
+                    customizer
+                            .anyRequest()
+                            .authenticated();
                 })
+                .formLogin(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())
                 .build();
     }
 

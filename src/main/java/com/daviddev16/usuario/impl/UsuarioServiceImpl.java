@@ -4,12 +4,11 @@ import com.daviddev16.handler.DataIntegrityViolationExceptionHandler;
 import com.daviddev16.core.DataIntegrityViolationProcessor;
 import com.daviddev16.core.exception.generic.DataConflictFoundException;
 import com.daviddev16.core.exception.generic.InvalidRequestStateException;
-import com.daviddev16.usuario.StatusUsuario;
-import com.daviddev16.usuario.Usuario;
-import com.daviddev16.usuario.UsuarioRepository;
-import com.daviddev16.usuario.UsuarioService;
+import com.daviddev16.usuario.*;
 import com.daviddev16.usuario.exception.UsuarioNaoEncontradoException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,11 +55,20 @@ public class UsuarioServiceImpl implements UsuarioService,
     public Usuario cadastrarNovoUsuario(Usuario usuario) {
         try {
             usuarioRepository.save(usuario);
-        } catch (DataIntegrityViolationException diveException)
-        {
+        } catch (DataIntegrityViolationException diveException) {
             violationHandler.handleDataIntegrityViolationException(this, diveException, usuario);
         }
         return null;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Usuario usuario = usuarioRepository
+                .findByLogin(username)
+                .orElseThrow(() -> new UsuarioNaoEncontradoException(username));
+
+        return new UsuarioDetails(usuario);
     }
 
     @Override
@@ -74,8 +82,7 @@ public class UsuarioServiceImpl implements UsuarioService,
 
     @Override
     public void processConstraintViolationEvent(String constraintName, Usuario usuario) {
-        if (constraintName.equals(UQ_USUARIO_LOGIN))
-        {
+        if (constraintName.equals(UQ_USUARIO_LOGIN)) {
             throw new DataConflictFoundException(format("Não é possível criar um usuário com o" +
                     " nome '%s'. Este nome já foi usado anteriormente.", usuario.getNome()));
         }

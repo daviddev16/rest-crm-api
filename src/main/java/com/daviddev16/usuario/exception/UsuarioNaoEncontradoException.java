@@ -11,4 +11,8 @@ public class UsuarioNaoEncontradoException extends NotFoundException {
     public UsuarioNaoEncontradoException(Integer usuarioId) {
         super( format("Não foi possível localizar um usuário com id %d.", usuarioId) );
     }
+
+    public UsuarioNaoEncontradoException(String login) {
+        super( format("Não foi possível localizar um usuário com login %s.", login) );
+    }
 }

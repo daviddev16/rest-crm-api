@@ -71,8 +71,7 @@ public class TipoAtendimentoServiceImpl implements TipoAtendimentoService,
     public TipoAtendimento incluirTipoAtendimento(TipoAtendimento tipoAtendimento) {
         try {
             return tipoAtendimentoRepository.save(tipoAtendimento);
-        } catch (DataIntegrityViolationException diveException)
-        {
+        } catch (DataIntegrityViolationException diveException) {
             violationHandler.handleDataIntegrityViolationException(this, diveException, tipoAtendimento);
         }
         return null;
@@ -80,8 +79,7 @@ public class TipoAtendimentoServiceImpl implements TipoAtendimentoService,
 
     @Override
     public void processConstraintViolationEvent(String constraintName, TipoAtendimento tipoAtendimento) {
-        if (constraintName.equals(UQ_NOME_TIPO_ATENDIMENTO))
-        {
+        if (constraintName.equals(UQ_NOME_TIPO_ATENDIMENTO)) {
             throw new DataConflictFoundException(format("Não é possível criar um tipo de atendimento com o" +
                     " nome '%s'. Este nome já foi usado anteriormente.", tipoAtendimento.getNome()));
         }
